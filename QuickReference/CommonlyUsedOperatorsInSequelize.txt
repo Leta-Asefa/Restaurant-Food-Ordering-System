@@ -1,0 +1,32 @@
+Commonly Used Sequelize Operators (Op)
+Comparison Operators
+
+Op.eq: Equal
+Op.ne: Not equal
+Op.gt: Greater than
+Op.gte: Greater than or equal
+Op.lt: Less than
+Op.lte: Less than or equal
+Logical Operators
+
+Op.and: Logical AND
+Op.or: Logical OR
+Op.not: Logical NOT
+Op.in: Value is within a list of values
+Op.notIn: Value is not within a list of values
+String Operators
+
+Op.like: Case-sensitive LIKE
+Op.notLike: Case-sensitive NOT LIKE
+Op.iLike: Case-insensitive LIKE (useful for PostgreSQL)
+Op.notILike: Case-insensitive NOT LIKE (useful for PostgreSQL)
+Op.startsWith: Starts with a specified string (use with Op.like)
+Op.endsWith: Ends with a specified string (use with Op.like)
+Op.substring: Contains a specified substring (use with Op.like)
+Other Operators
+
+Op.between: Value is between two values
+Op.notBetween: Value is not between two values
+Op.overlap: Array overlaps with a specified array (useful for PostgreSQL)
+Op.contains: Array contains a specified array or value (useful for PostgreSQL)
+Op.any: Array contains any of the specified values (useful for PostgreSQL)
