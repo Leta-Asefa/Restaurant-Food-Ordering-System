@@ -1,4 +1,9 @@
 const { Op } = require('sequelize');
+const { Chapa } = require('chapa-nodejs');
+const chapa = new Chapa({
+    secretKey: process.env.CHAPA_SECRET_KEY
+});
+
 
 exports.getAll = async (req, res) => {
     try {
@@ -48,9 +53,48 @@ exports.add = async (req, res) => {
     }
 };
 
-exports.pay = async (req, res) => {
-   
+exports.getPaymentPage = async (req, res) => {
+    const response =await generateTransactionReference(req.body)
+    if (response.status === 'success') {
+        
+        res.status(201).json({ checkout_url: response.data.checkout_url });
+    } else {
+        res.status(400).json({ error: "make sure that you entered all the required fields " });
+    }
+
 };
 
+
+
+const generateTransactionReference = async (paymentInfo) => {
+    const tx_ref = await chapa.generateTransactionReference();
+   
+    const response = await chapa.initialize({
+        first_name: paymentInfo.firstName,
+        last_name: paymentInfo.lastName,
+        email: paymentInfo.email,
+        currency: paymentInfo.currency,
+        amount: paymentInfo.amount,
+        tx_ref: tx_ref,
+        callback_url: 'https://www.google.com/',
+        return_url: 'https://www.facebook.com/',
+        customization: {
+            title: 'Food Ordering',
+            description: 'Payment for the order food',
+        },
+    });
+    response.tx_ref=tx_ref
+    return response
+
+
+}
+
+const verify = async () => {
+    const response = await chapa.verify({
+        tx_ref: 'TX-GWR92HLIUWYBV1L',
+    });
+
+    console.log(response)
+}
 
 

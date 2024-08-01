@@ -8,6 +8,6 @@ router.get('/all/date/:date', controller.getAllByDate);
 
 router.post('/add', controller.add);
 
-router.post('/pay',controller.pay)
+router.post('/paymentpage',controller.getPaymentPage)
 
 module.exports = router;

@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       totalPrice: {
         type: DataTypes.INTEGER, // Storing skills as JSON object
         allowNull: false
+      },
+      tx_ref: {
+        type: DataTypes.STRING
       }
   
     });

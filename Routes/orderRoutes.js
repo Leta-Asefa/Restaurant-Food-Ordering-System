@@ -12,4 +12,6 @@ router.post('/add', controller.add);
 
 router.patch('/update/:id', controller.updateById)
 
+router.patch('/update/:id', controller.updateById)
+
 module.exports = router;
